@@ -40,7 +40,10 @@ export function withHp(monsters) {
     boss.boss = true;
     boss.hp = Math.max(boss.hp, boss.ageDays);
     const who = (boss.author || "").split(/\s+/)[0];
-    boss.taunt = `You left me here ${boss.ageDays} days ago${who ? `, ${who}` : ""}. I'm still waiting.`;
+    const name = who ? `, ${who}` : "";
+    boss.taunt = boss.ageDays >= 2
+      ? `You left me here ${boss.ageDays} days ago${name}. I'm still waiting.`
+      : `Born today${name}. Already haunting you.`;
   }
   return out;
 }

@@ -51,4 +51,17 @@ ok("class Store(ABC):\n    def get(self):\n        raise NotImplementedError", [
 ok("    @abstractmethod\n    def area(self):\n        raise NotImplementedError", [], "a.py");
 ok("class Payments:\n    def refund(self):\n        raise NotImplementedError", ["STUB"], "a.py"); // concrete class: real stub
 
+// --- Found by scanning our own repo live ---
+ok("// TODO Slayer — repo scanner", []);                                             // product name, not a marker
+ok("// Returns every TODO/FIXME in the repo as a monster", []);                      // prose mention
+ok("// Placeholder language AI assistants commonly leave in comments.", []);         // the word, not a placeholder
+ok('{ text:"catch (e) {}", file:"x.ts" },', []);                                    // inside a string
+ok('ok("    raise NotImplementedError", ["STUB"]);', []);                            // test fixture string
+ok("set(k, v) { try { save(k, v); } catch {} },", ["SILENT"]);                       // real code: still caught
+ok("// TODO Fix the race condition", ["TODO"]);                                      // verb after marker: real
+ok("# TODO(zain): handle retries", ["TODO"], "a.py");
+ok("/*\n * FIXME - leaks on reconnect\n */", ["FIXME"]);
+ok("// placeholder for real auth", ["PLACEHOLDER"]);
+ok("<script>\n// TODO: debounce\n</script>", ["TODO"], "a.html");
+
 console.log("detect: all tests passed");
